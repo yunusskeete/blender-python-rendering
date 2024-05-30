@@ -19,11 +19,12 @@ IMPORT_FUNCTIONS: Dict[str, Callable] = {
     "usd": bpy.ops.import_scene.usd,
     "fbx": bpy.ops.import_scene.fbx,
     "stl": bpy.ops.import_mesh.stl,
-    "usda": bpy.ops.import_scene.usda,
+    "usda": bpy.ops.wm.usd_import,
     "dae": bpy.ops.wm.collada_import,
     "ply": bpy.ops.import_mesh.ply,
     "abc": bpy.ops.wm.alembic_import,
     "blend": bpy.ops.wm.append,
+    "usdz": bpy.ops.wm.usd_import,
 }
 
 
@@ -297,21 +298,6 @@ def load_object(object_path: str) -> None:
     file_extension = object_path.split(".")[-1].lower()
     if file_extension is None:
         raise ValueError(f"Unsupported file type: {object_path}")
-
-    if file_extension == "usdz":
-        cwd = os.getcwd()
-        # install usdz io package
-        dirname = os.path.dirname(os.path.realpath(__file__))
-        usdz_package = os.path.join(dirname, "io_scene_usdz.zip")
-        bpy.ops.preferences.addon_install(filepath=usdz_package)
-        # enable it
-        addon_name = "io_scene_usdz"
-        bpy.ops.preferences.addon_enable(module=addon_name)
-        # import the usdz
-        from io_scene_usdz.import_usdz import import_usdz
-
-        import_usdz(context, filepath=object_path, materials=True, animations=True)
-        return None
 
     # load from existing import functions
     import_function = IMPORT_FUNCTIONS[file_extension]
