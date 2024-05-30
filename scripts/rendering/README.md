@@ -118,7 +118,7 @@ Finally, we also have a `metadata.json` file, which contains metadata about the 
 
 ### 🎛 Configuration
 
-Inside of `main.py` there is a `render_objects` function that provides various parameters allowing for customization during the rendering process:
+<!-- Inside of `main.py` there is a `render_objects` function that provides various parameters allowing for customization during the rendering process:
 
 - `render_dir: str = "~/.objaverse"`: The directory where the objects will be rendered. Default is `"~/.objaverse"`.
 - `download_dir: Optional[str] = None`: The directory where the objects will be downloaded. Thanks to fsspec, we support writing files to many file systems. To use it, simply use the prefix of your filesystem before the path. For example hdfs://, s3://, http://, gcs://, or ssh://. Some of these file systems require installing an additional package (for example s3fs for s3, gcsfs for gcs, fsspec/sshfs for ssh). Start [here](https://github.com/rom1504/img2dataset#file-system-support) for more details on fsspec. If None, the objects will be deleted after they are rendered.
@@ -129,12 +129,20 @@ Inside of `main.py` there is a `render_objects` function that provides various p
 - `render_timeout: int = 300`: Maximum number of seconds to await completion of the rendering job. Default is `300` seconds.
 - `gpu_devices: Optional[Union[int, List[int]]] = None`: Specifies GPU device(s) for rendering. If an `int`, the GPU device is randomly chosen from `0` to `gpu_devices - 1`. If a `List[int]`, a GPU device is randomly chosen from the list. If `0`, the CPU is used. If `None` (default), all available GPUs are utilized.
 
-To tweak the objects that you want to render, go into `main.py` and update the `get_example_objects` function.
+To tweak the objects that you want to render, go into `main.py` and update the `get_example_objects` function. -->
+TBD.
 
 #### Example
 
 To render objects using a custom configuration:
 
-```bash
+<!-- ```bash
 python3 main.py --render_dir s3://bucket/render/directory --num_renders 15 --only_northern_hemisphere True
-```
+``` -->
+TBD.
+
+## To-Do
+- [ ] Test all file types
+- [ ] Fix camera positioning occluding part of object
+- [ ] Add Logging
+- [ ] Containerise
